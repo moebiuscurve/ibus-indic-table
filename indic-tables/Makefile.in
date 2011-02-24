@@ -57,6 +57,9 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@IBUS_TABLE_BUILD_MARATHI_PHONETIC_TRUE@am__append_1 =  \
+@IBUS_TABLE_BUILD_MARATHI_PHONETIC_TRUE@	marathi-phonetic.db \
+@IBUS_TABLE_BUILD_MARATHI_PHONETIC_TRUE@	marathi-inscript.db
 subdir = indic-tables
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -100,8 +103,8 @@ am__nobase_list = $(am__nobase_strip_setup); \
 am__base_list = \
   sed '$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;s/\n/ /g' | \
   sed '$$!N;$$!N;$$!N;$$!N;s/\n/ /g'
-am__installdirs = "$(DESTDIR)$(templatedir)"
-DATA = $(template_DATA)
+am__installdirs = "$(DESTDIR)$(tablesdir)" "$(DESTDIR)$(templatedir)"
+DATA = $(tables_DATA) $(template_DATA)
 RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
   distclean-recursive maintainer-clean-recursive
 AM_RECURSIVE_TARGETS = $(RECURSIVE_TARGETS:-recursive=) \
@@ -266,18 +269,29 @@ template_DATA = \
 	template.txt \
 	$(NULL)
 
+tables_DATA = $(am__append_1) $(NULL)
 templatedir = $(datadir)/ibus-indic-table/indic-tables
 EXTRA_DIST = \
-	template.txt \
-	$(NULL)
+        marathi-phonetic.txt \
+        marathi-inscript.txt \
+        $(NULL)
 
 MAINTAINERCLEANFILES = \
 	Makefile.in \
 	$(NULL)
 
+createdb = \
+	$(PYTHON) $(abs_top_srcdir)/engine/tabcreatedb.py
+
+tablesdir = $(datadir)/ibus-table/tables
+DISTCLEANFILES = \
+        *.db \
+        $(NULL)
+
 all: all-recursive
 
 .SUFFIXES:
+.SUFFIXES: .db .txt
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -308,6 +322,26 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
+install-tablesDATA: $(tables_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(tablesdir)" || $(MKDIR_P) "$(DESTDIR)$(tablesdir)"
+	@list='$(tables_DATA)'; test -n "$(tablesdir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(tablesdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(tablesdir)" || exit $$?; \
+	done
+
+uninstall-tablesDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(tables_DATA)'; test -n "$(tablesdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(tablesdir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(tablesdir)" && rm -f $$files
 install-templateDATA: $(template_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(templatedir)" || $(MKDIR_P) "$(DESTDIR)$(templatedir)"
@@ -527,7 +561,7 @@ check: check-recursive
 all-am: Makefile $(DATA)
 installdirs: installdirs-recursive
 installdirs-am:
-	for dir in "$(DESTDIR)$(templatedir)"; do \
+	for dir in "$(DESTDIR)$(tablesdir)" "$(DESTDIR)$(templatedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-recursive
@@ -551,6 +585,7 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-test -z "$(DISTCLEANFILES)" || rm -f $(DISTCLEANFILES)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -576,7 +611,8 @@ info: info-recursive
 
 info-am:
 
-install-data-am: install-data-local install-templateDATA
+install-data-am: install-data-local install-tablesDATA \
+	install-templateDATA
 
 install-dvi: install-dvi-recursive
 
@@ -620,7 +656,7 @@ ps: ps-recursive
 
 ps-am:
 
-uninstall-am: uninstall-templateDATA
+uninstall-am: uninstall-tablesDATA uninstall-templateDATA
 
 .MAKE: $(RECURSIVE_CLEAN_TARGETS) $(RECURSIVE_TARGETS) ctags-recursive \
 	install-am install-strip tags-recursive
@@ -633,15 +669,19 @@ uninstall-am: uninstall-templateDATA
 	install-dvi install-dvi-am install-exec install-exec-am \
 	install-html install-html-am install-info install-info-am \
 	install-man install-pdf install-pdf-am install-ps \
-	install-ps-am install-strip install-templateDATA installcheck \
-	installcheck-am installdirs installdirs-am maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-generic pdf \
-	pdf-am ps ps-am tags tags-recursive uninstall uninstall-am \
+	install-ps-am install-strip install-tablesDATA \
+	install-templateDATA installcheck installcheck-am installdirs \
+	installdirs-am maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-generic pdf pdf-am ps ps-am tags \
+	tags-recursive uninstall uninstall-am uninstall-tablesDATA \
 	uninstall-templateDATA
 
 
 install-data-local:
 	$(MKDIR_P) $(DESTDIR)$(pkgdatadir)/indic-tables
+
+.txt.db:
+	$(createdb) -n $@ -s $<
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

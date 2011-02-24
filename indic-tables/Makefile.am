@@ -29,10 +29,14 @@ template_DATA = \
 	template.txt \
 	$(NULL)
 
+tables_DATA =
+
 templatedir = $(datadir)/ibus-indic-table/indic-tables
 
 EXTRA_DIST = \
 	template.txt \
+        marathi-phonetic.txt \
+        marathi-inscript.txt \
 	$(NULL)
 
 MAINTAINERCLEANFILES = \
@@ -42,3 +46,30 @@ MAINTAINERCLEANFILES = \
 install-data-local:
 	$(MKDIR_P) $(DESTDIR)$(pkgdatadir)/indic-tables
 
+createdb = \
+	$(PYTHON) $(abs_top_srcdir)/engine/tabcreatedb.py
+
+if IBUS_TABLE_BUILD_MARATHI_PHONETIC
+tables_DATA += marathi-phonetic.db
+endif
+
+if IBUS_TABLE_BUILD_MARATHI_PHONETIC
+tables_DATA += marathi-inscript.db
+endif
+
+
+tables_DATA += $(NULL)
+
+tablesdir = $(datadir)/ibus-table/tables
+
+EXTRA_DIST = \
+        marathi-phonetic.txt \
+        marathi-inscript.txt \
+        $(NULL)
+
+DISTCLEANFILES = \
+        *.db \
+        $(NULL)
+
+.txt.db:
+	$(createdb) -n $@ -s $<

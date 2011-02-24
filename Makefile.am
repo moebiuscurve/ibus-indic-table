@@ -20,6 +20,8 @@
 #
 DISTCHECK_CONFIGURE_FLAGS = \
 	--enable-additional \
+	--enable_marathi_phonetic \
+	--enable_marathi_inscript \
 	$(NULL)
 
 SUBDIRS = \
