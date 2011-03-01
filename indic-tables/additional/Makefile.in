@@ -57,9 +57,6 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@IBUS_INDIC_TABLE_BUILD_ADDITIONAL_TRUE@am__append_1 = compose.db \
-@IBUS_INDIC_TABLE_BUILD_ADDITIONAL_TRUE@	latex.db 
-
 subdir = indic-tables/additional
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -227,11 +224,9 @@ createdb = \
 createdb_index = \
 	$(PYTHON) $(abs_top_srcdir)/engine/tabcreatedb.py -i
 
-tables_DATA = $(am__append_1) $(NULL)
+tables_DATA = $(NULL)
 tablesdir = $(pkgdatadir)/indic-tables
 EXTRA_DIST = \
-	compose.txt \
-	latex.txt \
 	$(NULL)
 
 DISTCLEANFILES = \

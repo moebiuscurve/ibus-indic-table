@@ -57,9 +57,6 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@IBUS_TABLE_BUILD_MARATHI_PHONETIC_TRUE@am__append_1 =  \
-@IBUS_TABLE_BUILD_MARATHI_PHONETIC_TRUE@	marathi-phonetic.db \
-@IBUS_TABLE_BUILD_MARATHI_PHONETIC_TRUE@	marathi-inscript.db
 subdir = indic-tables
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -269,12 +266,11 @@ template_DATA = \
 	template.txt \
 	$(NULL)
 
-tables_DATA = $(am__append_1) $(NULL)
+tables_DATA = $(NULL)
 templatedir = $(datadir)/ibus-indic-table/indic-tables
 EXTRA_DIST = \
-        marathi-phonetic.txt \
-        marathi-inscript.txt \
-        $(NULL)
+	template.txt \
+	$(NULL)
 
 MAINTAINERCLEANFILES = \
 	Makefile.in \

@@ -29,19 +29,12 @@ createdb_index = \
 
 tables_DATA =
 
-if IBUS_INDIC_TABLE_BUILD_ADDITIONAL
-tables_DATA += compose.db \
-	latex.db 
-endif
-
 tables_DATA += $(NULL)
 
 
 tablesdir = $(pkgdatadir)/indic-tables
 
 EXTRA_DIST = \
-	compose.txt \
-	latex.txt \
 	$(NULL)
 
 DISTCLEANFILES = \

@@ -19,9 +19,6 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 #
 DISTCHECK_CONFIGURE_FLAGS = \
-	--enable-additional \
-	--enable_marathi_phonetic \
-	--enable_marathi_inscript \
 	$(NULL)
 
 SUBDIRS = \
