@@ -55,7 +55,6 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@IBUS_INDIC_TABLE_BUILD_ADDITIONAL_TRUE@am__append_1 = latex.svg compose.svg
 subdir = icons/additional
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -220,8 +219,6 @@ top_srcdir = @top_srcdir@
 icons_DATA = $(am__append_1) $(NULL)
 iconsdir = $(pkgdatadir)/icons
 EXTRA_DIST = \
-	latex.svg \
-	compose.svg \
 	$(NULL)
 
 MAINTAINERCLEANFILES = \
