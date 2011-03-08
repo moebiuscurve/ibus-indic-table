@@ -3,7 +3,10 @@ IBus-Indic-Table is the IM Engine framework for table-based input methods, and i
 forked from ibus-table whose Project Owner & Developer is Yu Yuwei <acevery@gmail.com>,
 with contributions from Caius "kaio" Chance <cchance@redhat.com>.
 The aim of IBus-Indic-Table is to provide a table based boosted environment
-for SCIM style tables.
+for SCIM style tables. This project started out as an effort on idea and algorithm 
+by Pravin Satput e<psatpute@redhat.com> which is described at 
+https://fedoraproject.org/wiki/Features/IndicTypingBooster &
+https://fedorahosted.org/indic-typing-booster/
 Definitly, it is far from perfect, so if you have any wish or any
 suggestion, please send me an email <nav007@gmail.com>, I would be very please to hear
 from you :)
