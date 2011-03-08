@@ -4,7 +4,7 @@ forked from ibus-table whose Project Owner & Developer is Yu Yuwei <acevery@gmai
 with contributions from Caius "kaio" Chance <cchance@redhat.com>.
 The aim of IBus-Indic-Table is to provide a table based boosted environment
 for SCIM style tables. This project started out as an effort on idea and algorithm 
-by Pravin Satput e<psatpute@redhat.com> which is described at 
+by Pravin Satpute <psatpute@redhat.com> which is described at 
 https://fedoraproject.org/wiki/Features/IndicTypingBooster &
 https://fedorahosted.org/indic-typing-booster/
 Definitly, it is far from perfect, so if you have any wish or any
