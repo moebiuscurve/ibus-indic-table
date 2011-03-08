@@ -15,7 +15,7 @@ LICENSE = LGPL
 
 ### An unique id to distinguish this table among others.
 ### Use uuidgen to generate this kind of id.
-UUID = 091bdfe8-934d-4c4c-9599-93e12d7b4657
+UUID = 48595aae-0dda-4812-b023-d71b181ffdff
 
 ### A unique number indicates the version of this file.
 ### For example the last modified date of this file.
