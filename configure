@@ -563,10 +563,6 @@ LTLIBOBJS
 LIBOBJS
 IBUS_INDIC_TABLE_BUILD_ADDITIONAL_FALSE
 IBUS_INDIC_TABLE_BUILD_ADDITIONAL_TRUE
-IBUS_TABLE_BUILD_MARATHI_INSCRIPT_FALSE
-IBUS_TABLE_BUILD_MARATHI_INSCRIPT_TRUE
-IBUS_TABLE_BUILD_MARATHI_PHONETIC_FALSE
-IBUS_TABLE_BUILD_MARATHI_PHONETIC_TRUE
 POSUB
 LTLIBINTL
 LIBINTL
@@ -695,8 +691,6 @@ with_gnu_ld
 enable_rpath
 with_libiconv_prefix
 with_libintl_prefix
-enable_marathi_phonetic
-enable_marathi_inscript
 enable_additional
 '
       ac_precious_vars='build_alias
@@ -1338,10 +1332,6 @@ Optional Features:
   --disable-dependency-tracking  speeds up one-time build
   --enable-dependency-tracking   do not reject slow dependency extractors
   --disable-rpath         do not hardcode runtime library paths
-  --enable-marathi-phonetic
-                          Generate Marathi-Phonetic Engine
-  --enable-marathi-inscript
-                          Generate Marathi-Inscript Engine
   --disable-additional    Dont generate additional Engine
 
 Optional Packages:
@@ -5635,41 +5625,6 @@ $as_echo "#define HAVE_DCGETTEXT 1" >>confdefs.h
 
 
 
-# choose table
-# Check whether --enable-marathi-phonetic was given.
-if test "${enable_marathi_phonetic+set}" = set; then :
-  enableval=$enable_marathi_phonetic;
-else
-  enable_marathi_phonetic=yes
-fi
-
-
- if test x"$enable_marathi_phonetic" != x"no"; then
-  IBUS_TABLE_BUILD_MARATHI_PHONETIC_TRUE=
-  IBUS_TABLE_BUILD_MARATHI_PHONETIC_FALSE='#'
-else
-  IBUS_TABLE_BUILD_MARATHI_PHONETIC_TRUE='#'
-  IBUS_TABLE_BUILD_MARATHI_PHONETIC_FALSE=
-fi
-
-
-# Check whether --enable-marathi-inscript was given.
-if test "${enable_marathi_inscript+set}" = set; then :
-  enableval=$enable_marathi_inscript;
-else
-  enable_marathi_inscript=yes
-fi
-
-
- if test x"$enable_marathi_inscript" != x"no"; then
-  IBUS_TABLE_BUILD_MARATHI_INSCRIPT_TRUE=
-  IBUS_TABLE_BUILD_MARATHI_INSCRIPT_FALSE='#'
-else
-  IBUS_TABLE_BUILD_MARATHI_INSCRIPT_TRUE='#'
-  IBUS_TABLE_BUILD_MARATHI_INSCRIPT_FALSE=
-fi
-
-
 # ARGUMENTS
 # Check whether --enable-additional was given.
 if test "${enable_additional+set}" = set; then :
@@ -5844,14 +5799,6 @@ Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${am__fastdepCC_TRUE}" && test -z "${am__fastdepCC_FALSE}"; then
   as_fn_error $? "conditional \"am__fastdepCC\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5
-fi
-if test -z "${IBUS_TABLE_BUILD_MARATHI_PHONETIC_TRUE}" && test -z "${IBUS_TABLE_BUILD_MARATHI_PHONETIC_FALSE}"; then
-  as_fn_error $? "conditional \"IBUS_TABLE_BUILD_MARATHI_PHONETIC\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5
-fi
-if test -z "${IBUS_TABLE_BUILD_MARATHI_INSCRIPT_TRUE}" && test -z "${IBUS_TABLE_BUILD_MARATHI_INSCRIPT_FALSE}"; then
-  as_fn_error $? "conditional \"IBUS_TABLE_BUILD_MARATHI_INSCRIPT\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${IBUS_INDIC_TABLE_BUILD_ADDITIONAL_TRUE}" && test -z "${IBUS_INDIC_TABLE_BUILD_ADDITIONAL_FALSE}"; then
@@ -7136,14 +7083,10 @@ Build options:
   Version                   $VERSION
   Install prefix            $prefix
   Build Additional          $enable_additional
-  Build Marathi-Phonetic          $enable_marathi_phonetic
-  Build Marathi-Inscript          $enable_marathi_inscript
 " >&5
 $as_echo "
 Build options:
   Version                   $VERSION
   Install prefix            $prefix
   Build Additional          $enable_additional
-  Build Marathi-Phonetic          $enable_marathi_phonetic
-  Build Marathi-Inscript          $enable_marathi_inscript
 " >&6; }
