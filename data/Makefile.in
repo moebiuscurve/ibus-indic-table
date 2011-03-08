@@ -218,10 +218,9 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-pytable_DATA = pinyin_table.txt.bz2
+pytable_DATA = 
 pytabledir = $(pkgdatadir)/data
 EXTRA_DIST = \
-	pinyin_table.txt.bz2 \
 	$(NULL)
 
 MAINTAINERCLEANFILES = \
