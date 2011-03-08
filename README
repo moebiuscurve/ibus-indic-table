@@ -1,12 +1,11 @@
 == Introduction ==
 IBus-Indic-Table is the IM Engine framework for table-based input methods, and is
-derieved from ibus-table whose Project Owner & Developer is Yu Yuwei <acevery@gmail.com>,
+forked from ibus-table whose Project Owner & Developer is Yu Yuwei <acevery@gmail.com>,
 with contributions from Caius "kaio" Chance <cchance@redhat.com>.
 The aim of IBus-Indic-Table is to provide a table based boosted environment
 for SCIM style tables.
 Definitly, it is far from perfect, so if you have any wish or any
-suggestion, please file a issue on http://code.google.com/p/ibus/issues
-or send me an email <nav007@gmail.com>, I would be very please to hear
+suggestion, please send me an email <nav007@gmail.com>, I would be very please to hear
 from you :)
 
 == Key Bindings ==
@@ -24,14 +23,6 @@ Shift_L             when no key inputted: shift the input mode between
                         English and Table mode.
                     during input: commit the first candidate into
                         preedit string.
-Shift_R             shift between PinYin mode and Normal mode under
-                        Table mode.
-
-Shift_L/Shift_R + 1 input tunes under PinYin mode. the tunes display in
-                  2     aux string area as ↑1, ↑2, ↑3, ↑4, ↑5. 
-                  3     1 is YinPin, 2 is YangPin, 3 is ShangSheng,
-                  4     4 is QuSheng, 5 is QingSheng
-                  5
 
 Arrow_Left          move cursor one character left in preedit string.
 Arrow_Right         move cursor one character right in preedit string.
