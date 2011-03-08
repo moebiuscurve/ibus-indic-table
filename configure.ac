@@ -54,21 +54,6 @@ AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Define to the read-only 
 AM_GNU_GETTEXT([external])
 AM_GNU_GETTEXT_VERSION(0.16.1)
 
-# choose table
-AC_ARG_ENABLE([marathi-phonetic],
-    [AC_HELP_STRING([--enable-marathi-phonetic],
-        [Generate Marathi-Phonetic Engine])], ,
-    [enable_marathi_phonetic=yes])
-
-AM_CONDITIONAL([IBUS_TABLE_BUILD_MARATHI_PHONETIC],[test x"$enable_marathi_phonetic" != x"no"])
-
-AC_ARG_ENABLE([marathi-inscript],
-    [AC_HELP_STRING([--enable-marathi-inscript],
-        [Generate Marathi-Inscript Engine])], ,
-    [enable_marathi_inscript=yes])
-
-AM_CONDITIONAL([IBUS_TABLE_BUILD_MARATHI_INSCRIPT],[test x"$enable_marathi_inscript" != x"no"])
-
 # ARGUMENTS
 AC_ARG_ENABLE([additional],
     [AC_HELP_STRING([--disable-additional],
@@ -101,6 +86,4 @@ Build options:
   Version                   $VERSION
   Install prefix            $prefix
   Build Additional          $enable_additional
-  Build Marathi-Phonetic          $enable_marathi_phonetic
-  Build Marathi-Inscript          $enable_marathi_inscript
 ])
